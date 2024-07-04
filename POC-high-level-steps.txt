@@ -29,13 +29,13 @@ ________________________________________IN ARGOCD-APPS REPO
 3. 
  3.1 kubectl apply -f appofapps.yaml ( inspect the file before applying if any other customizations are needed )
  3.2 kubectl apply -f projects/ ( inspect all the files before applying if any other customizations are needed, check the regexp for clusters )
-4. choose one app <appname>
+4. choose one app <appname> , and one env from (dev,qa,perf,uat,prod) ( start with dev and keep making corrections, and promote to higher environments )
    run helm-command-to-create-app.sh ( this will create a folder in appofapps directory, and an application yaml)
 5. check git status and see that there is a new folder under appofapps folder with the same appname
 6. add+commit+push to git repo
 7. check to see if the new app was created in argocd, and its sync and health status.
 
-REPEAT STEPS 4 to  7 For each app
+REPEAT STEPS 4 to 7 For each app and env combination 
 
 
 
