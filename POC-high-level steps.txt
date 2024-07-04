@@ -1,0 +1,42 @@
+wisetech poc steps
+pre-requisites
+bash, helm, yq
+argocd instance is ready
+fork the wisetech's original k8s repos ( hence forth to be refered to as the k8s repo )
+fork the opsmx repo "wisetech-argocd-apps"
+fork the opsmx repo "wisetech-helper"
+add these forked repositories to argocd
+the clusters where our apps will be deployed in POC, should be added to argocd
+
+________________________________________IN K8S REPO
+1. get bash, helm, yq installed
+2. identify the k8s manifest repo(s)( previously forked)
+3. identify the app folders in the each repo, choose one app for the steps below, then two and if the results are ok, loopover all the apps
+4. copy files from wisetech-helper repo into  the base folder of the k8s repo 
+5. choose one app <appname>, 
+   run transform.sh ( this will create a legitimate helm chart folder from the contents of deployment folder)
+   and run create-mainchart.sh
+6. check git status, and that one folder for each app <appname>-mainchart is created, inspect the contents of this folder
+7. remove the files copied from step 4 (optional)
+8. add+commit+push to git repo
+
+REPEAT STEPS 5 to 8 For each app
+
+________________________________________IN ARGOCD-APPS REPO
+
+1. from the forked wisetech-argocd-app repo , create a clone on the jumpbox
+2. cd into the repo folder
+3. 
+ 3.1 kubectl apply -f appofapps.yaml ( inspect the file before applying if any other customizations are needed )
+ 3.2 kubectl apply -f projects/ ( inspect all the files before applying if any other customizations are needed, check the regexp for clusters )
+4. choose one app <appname>
+   run helm-command-to-create-app.sh ( this will create a folder in appofapps directory, and an application yaml)
+5. check git status and see that there is a new folder under appofapps folder with the same appname
+6. add+commit+push to git repo
+7. check to see if the new app was created in argocd, and its sync and health status.
+
+REPEAT STEPS 4 to  7 For each app
+
+
+
+
