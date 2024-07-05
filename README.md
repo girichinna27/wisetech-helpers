@@ -3,7 +3,7 @@
 PRE_REQUISITES  
 bash installed  
 helm installed  
-yq installed  
+yq installed   (sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq)
 
 step 1. clone this repo
 
